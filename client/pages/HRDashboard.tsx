@@ -137,7 +137,6 @@ interface Employee {
   // Document Uploads
   aadhaarCard?: string;
   panCard?: string;
-  passport?: string;
   drivingLicense?: string;
   resume?: string;
   medicalCertificate?: string;
