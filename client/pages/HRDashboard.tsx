@@ -867,7 +867,6 @@ export default function HRDashboard() {
         salary: "",
         aadhaarCard: "",
         panCard: "",
-        passport: "",
         drivingLicense: "",
         resume: "",
         medicalCertificate: "",
