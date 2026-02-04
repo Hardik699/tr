@@ -8,7 +8,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { User, Shield, Users, ArrowRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  User,
+  Shield,
+  Users,
+  ArrowRight,
+  Sparkles,
+  Zap,
+  BarChart3,
+  X,
+} from "lucide-react";
 import AppNav from "@/components/Navigation";
 
 export default function Index() {
@@ -16,16 +32,27 @@ export default function Index() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState("");
   const [currentUser, setCurrentUser] = useState("");
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [hasSeenWelcome, setHasSeenWelcome] = useState(false);
 
   // Check authentication status
   useEffect(() => {
     const auth = localStorage.getItem("isAuthenticated");
     const role = localStorage.getItem("userRole");
     const user = localStorage.getItem("currentUser");
+    const lastUser = localStorage.getItem("lastAuthenticatedUser");
 
     setIsAuthenticated(!!auth);
     setUserRole(role || "");
     setCurrentUser(user || "");
+
+    // Show welcome modal only on new login
+    if (auth && user && user !== lastUser) {
+      setShowWelcomeModal(true);
+      localStorage.setItem("lastAuthenticatedUser", user);
+    }
+
+    setHasSeenWelcome(true);
   }, []);
 
   return (
