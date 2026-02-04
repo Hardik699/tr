@@ -1602,16 +1602,49 @@ Generated on: ${new Date().toLocaleString()}
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="hr-id" className="text-slate-300">
-                            HR ID (Auto-generated)
-                          </Label>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="hr-id" className="text-slate-300">
+                              HR ID {isManualHRId ? "(Manual Entry)" : "(Auto-generated)"}
+                            </Label>
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => {
+                                setIsManualHRId(!isManualHRId);
+                                if (!isManualHRId) {
+                                  // When switching to auto mode, reset to auto-generated
+                                  setNewEmployee({
+                                    ...newEmployee,
+                                    employeeId: "",
+                                  });
+                                }
+                              }}
+                              className="text-xs text-blue-400 hover:text-blue-300 h-auto p-1"
+                            >
+                              {isManualHRId ? "Auto" : "Manual"}
+                            </Button>
+                          </div>
                           <Input
                             id="hr-id"
                             value={
                               newEmployee.employeeId || getNextEmployeeId()
                             }
-                            readOnly
-                            className="bg-slate-800/50 border-slate-700 text-slate-400"
+                            onChange={(e) => {
+                              if (isManualHRId) {
+                                setNewEmployee({
+                                  ...newEmployee,
+                                  employeeId: e.target.value,
+                                });
+                              }
+                            }}
+                            readOnly={!isManualHRId}
+                            className={`${
+                              isManualHRId
+                                ? "bg-slate-800/50 border-slate-700 text-white cursor-text"
+                                : "bg-slate-800/50 border-slate-700 text-slate-400 cursor-not-allowed"
+                            }`}
+                            placeholder={isManualHRId ? "Enter HR ID" : ""}
                           />
                         </div>
 
