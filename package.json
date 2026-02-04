@@ -12,8 +12,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production node dist/server/simple-server.js",
+    "build": "vite build",
+    "start": "NODE_ENV=production node --loader tsx --no-warnings=ExperimentalWarning server/simple-server.ts",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc"
