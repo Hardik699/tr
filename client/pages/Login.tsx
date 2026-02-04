@@ -21,9 +21,9 @@ export default function Login() {
 
     // Define users with their roles
     const users: Record<string, { password: string; role: string }> = {
-      admin: { password: "admin", role: "admin" },
-      it: { password: "it@2121", role: "it" },
-      HR: { password: "Hr@2121", role: "hr" },
+      admin: { password: "123", role: "admin" },
+      it: { password: "123", role: "it" },
+      hr: { password: "123", role: "hr" },
     };
 
     // Check credentials
