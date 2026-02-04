@@ -66,9 +66,32 @@ export default function Login() {
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("userRole", users[username].role);
       localStorage.setItem("currentUser", username);
-      navigate("/");
+
+      // Show success dialog
+      setSuccessDialog(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } else {
-      alert("Invalid credentials. Please check your username and password.");
+      // Determine specific error message
+      if (!username || !password) {
+        setErrorDialog({
+          isOpen: true,
+          message:
+            "Please enter both username and password to continue.",
+        });
+      } else if (!users[username]) {
+        setErrorDialog({
+          isOpen: true,
+          message: `Username "${username}" not found. Please check and try again.`,
+        });
+      } else {
+        setErrorDialog({
+          isOpen: true,
+          message:
+            "Invalid password. Please check your credentials and try again.",
+        });
+      }
     }
 
     setIsLoading(false);
