@@ -34,6 +34,7 @@ export default function AppNav() {
   const [userRole, setUserRole] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
   // Check authentication status
   useEffect(() => {
