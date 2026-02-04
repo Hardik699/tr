@@ -64,13 +64,5 @@ export function createServer() {
   // Clear data API (for development/testing)
   app.use("/api/clear-data", clearDataRouter);
 
-  // Serve static files from the dist/spa directory
-  app.use(express.static(path.join(process.cwd(), "dist/spa")));
-
-  // SPA fallback - serve index.html for any non-API routes
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(process.cwd(), "dist/spa", "index.html"));
-  });
-
   return app;
 }
