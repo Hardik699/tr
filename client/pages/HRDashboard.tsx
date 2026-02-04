@@ -1601,7 +1601,10 @@ Generated on: ${new Date().toLocaleString()}
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <Label htmlFor="hr-id" className="text-slate-300">
-                              HR ID {isManualHRId ? "(Manual Entry)" : "(Auto-generated)"}
+                              HR ID{" "}
+                              {isManualHRId
+                                ? "(Manual Entry)"
+                                : "(Auto-generated)"}
                             </Label>
                             <Button
                               type="button"

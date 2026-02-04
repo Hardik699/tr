@@ -78,7 +78,10 @@ export default function ChangePasswordModal({
     }
 
     // Verify current password
-    if (!users[currentUser] || users[currentUser].password !== currentPassword) {
+    if (
+      !users[currentUser] ||
+      users[currentUser].password !== currentPassword
+    ) {
       toast.error("Current password is incorrect");
       setIsLoading(false);
       return;

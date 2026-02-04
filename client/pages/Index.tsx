@@ -76,7 +76,8 @@ export default function Index() {
           color: "green",
           gradient: "from-green-400 via-emerald-300 to-teal-300",
           bgColor: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100",
-          message: "All employee data is synced and ready. Start managing your team today!",
+          message:
+            "All employee data is synced and ready. Start managing your team today!",
         };
       case "it":
         return {
@@ -85,8 +86,10 @@ export default function Index() {
           icon: Zap,
           color: "orange",
           gradient: "from-orange-400 via-amber-300 to-yellow-300",
-          bgColor: "bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-100",
-          message: "All systems connected. You're ready to manage IT infrastructure.",
+          bgColor:
+            "bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-100",
+          message:
+            "All systems connected. You're ready to manage IT infrastructure.",
         };
       default:
         return {
@@ -114,7 +117,11 @@ export default function Index() {
         <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-700"></div>
 
         {/* Animated Grid Background */}
-        <div className={"absolute inset-0 bg-[url('data:image/svg+xml;utf8,<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0h60v60H0z\" fill=\"none\"/><path d=\"M0 0h60v1H0z\" stroke=\"rgba(100,116,139,0.1)\" stroke-width=\"1\"/><path d=\"M0 0v60h1V0z\" stroke=\"rgba(100,116,139,0.1)\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"30\" r=\"1\" fill=\"rgba(100,116,139,0.1)\"/></svg>')] opacity-30"}></div>
+        <div
+          className={
+            'absolute inset-0 bg-[url(\'data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h60v60H0z" fill="none"/><path d="M0 0h60v1H0z" stroke="rgba(100,116,139,0.1)" stroke-width="1"/><path d="M0 0v60h1V0z" stroke="rgba(100,116,139,0.1)" stroke-width="1"/><circle cx="30" cy="30" r="1" fill="rgba(100,116,139,0.1)"/></svg>\')] opacity-30'
+          }
+        ></div>
       </div>
 
       {/* Navigation */}
@@ -131,12 +138,12 @@ export default function Index() {
           {!isAuthenticated && (
             <>
               <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                A modern solution for user authentication and management. Secure,
-                simple, and efficient.
+                A modern solution for user authentication and management.
+                Secure, simple, and efficient.
               </p>
               <p className="text-slate-400 text-lg">
-                Use the navigation above to login or contact an administrator for
-                access.
+                Use the navigation above to login or contact an administrator
+                for access.
               </p>
             </>
           )}
@@ -152,9 +159,7 @@ export default function Index() {
               <div className="space-y-3 text-slate-400 max-w-3xl mx-auto">
                 <p className="flex items-center justify-center space-x-2">
                   <ArrowRight className="h-4 w-4 text-blue-400" />
-                  <span>
-                    Click "Login" in the navigation above to sign in
-                  </span>
+                  <span>Click "Login" in the navigation above to sign in</span>
                 </p>
                 <p className="flex items-center justify-center space-x-2">
                   <ArrowRight className="h-4 w-4 text-blue-400" />
@@ -176,7 +181,9 @@ export default function Index() {
 
       {/* Beautiful Welcome Modal */}
       <Dialog open={showWelcomeModal} onOpenChange={setShowWelcomeModal}>
-        <DialogContent className={`${welcomeData.bgColor} border-2 border-white/30 text-gray-800 shadow-2xl`}>
+        <DialogContent
+          className={`${welcomeData.bgColor} border-2 border-white/30 text-gray-800 shadow-2xl`}
+        >
           <div className="absolute inset-0 overflow-hidden rounded-lg">
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
@@ -184,7 +191,9 @@ export default function Index() {
 
           <DialogHeader className="relative z-10">
             <div className="flex items-center justify-between mb-4">
-              <div className={`w-20 h-20 bg-gradient-to-br ${welcomeData.gradient} rounded-full flex items-center justify-center backdrop-blur-md animate-bounce shadow-lg`}>
+              <div
+                className={`w-20 h-20 bg-gradient-to-br ${welcomeData.gradient} rounded-full flex items-center justify-center backdrop-blur-md animate-bounce shadow-lg`}
+              >
                 <WelcomeIcon className="w-10 h-10 text-white" />
               </div>
               <button
@@ -212,15 +221,21 @@ export default function Index() {
                 <>
                   <div className="flex items-center space-x-3 bg-purple-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-purple-200/80 transition-all border border-purple-200">
                     <Sparkles className="h-5 w-5 text-purple-600" />
-                    <span className="text-sm text-gray-800">Full access to all dashboards</span>
+                    <span className="text-sm text-gray-800">
+                      Full access to all dashboards
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-blue-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-blue-200/80 transition-all border border-blue-200">
                     <Users className="h-5 w-5 text-blue-600" />
-                    <span className="text-sm text-gray-800">Manage users and permissions</span>
+                    <span className="text-sm text-gray-800">
+                      Manage users and permissions
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-indigo-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-indigo-200/80 transition-all border border-indigo-200">
                     <BarChart3 className="h-5 w-5 text-indigo-600" />
-                    <span className="text-sm text-gray-800">View system analytics</span>
+                    <span className="text-sm text-gray-800">
+                      View system analytics
+                    </span>
                   </div>
                 </>
               )}
@@ -229,15 +244,21 @@ export default function Index() {
                 <>
                   <div className="flex items-center space-x-3 bg-emerald-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-emerald-200/80 transition-all border border-emerald-200">
                     <Users className="h-5 w-5 text-emerald-600" />
-                    <span className="text-sm text-gray-800">Manage HR dashboard</span>
+                    <span className="text-sm text-gray-800">
+                      Manage HR dashboard
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-teal-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-teal-200/80 transition-all border border-teal-200">
                     <BarChart3 className="h-5 w-5 text-teal-600" />
-                    <span className="text-sm text-gray-800">View employee analytics</span>
+                    <span className="text-sm text-gray-800">
+                      View employee analytics
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-green-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-green-200/80 transition-all border border-green-200">
                     <Sparkles className="h-5 w-5 text-green-600" />
-                    <span className="text-sm text-gray-800">Track attendance and leave</span>
+                    <span className="text-sm text-gray-800">
+                      Track attendance and leave
+                    </span>
                   </div>
                 </>
               )}
@@ -246,15 +267,21 @@ export default function Index() {
                 <>
                   <div className="flex items-center space-x-3 bg-amber-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-amber-200/80 transition-all border border-amber-200">
                     <Zap className="h-5 w-5 text-amber-600" />
-                    <span className="text-sm text-gray-800">Manage IT systems</span>
+                    <span className="text-sm text-gray-800">
+                      Manage IT systems
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-orange-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-orange-200/80 transition-all border border-orange-200">
                     <BarChart3 className="h-5 w-5 text-orange-600" />
-                    <span className="text-sm text-gray-800">Monitor system health</span>
+                    <span className="text-sm text-gray-800">
+                      Monitor system health
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3 bg-yellow-100/80 backdrop-blur-sm p-3 rounded-lg hover:bg-yellow-200/80 transition-all border border-yellow-200">
                     <Sparkles className="h-5 w-5 text-yellow-600" />
-                    <span className="text-sm text-gray-800">Manage assets and inventory</span>
+                    <span className="text-sm text-gray-800">
+                      Manage assets and inventory
+                    </span>
                   </div>
                 </>
               )}
