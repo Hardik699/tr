@@ -1387,7 +1387,6 @@ Generated on: ${new Date().toLocaleString()}
   const documentTypes = [
     { key: "aadhaarCard", label: "Aadhaar Card", icon: CreditCard },
     { key: "panCard", label: "PAN Card", icon: CreditCard },
-    { key: "passport", label: "Passport", icon: FileText },
     { key: "drivingLicense", label: "Driving License", icon: CreditCard },
     { key: "resume", label: "Resume/CV", icon: FileText },
     { key: "medicalCertificate", label: "Medical Certificate", icon: FileText },
