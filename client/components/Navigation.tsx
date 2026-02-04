@@ -350,6 +350,13 @@ export default function AppNav() {
           </div>
         </div>
       </div>
+
+      {/* Change Password Modal */}
+      <ChangePasswordModal
+        isOpen={isChangePasswordOpen}
+        onOpenChange={setIsChangePasswordOpen}
+        currentUser={currentUser}
+      />
     </nav>
   );
 }
