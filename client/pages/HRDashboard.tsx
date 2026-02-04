@@ -137,7 +137,6 @@ interface Employee {
   // Document Uploads
   aadhaarCard?: string;
   panCard?: string;
-  passport?: string;
   drivingLicense?: string;
   resume?: string;
   medicalCertificate?: string;
@@ -222,7 +221,6 @@ export default function HRDashboard() {
     // Document Uploads
     aadhaarCard: "",
     panCard: "",
-    passport: "",
     drivingLicense: "",
     resume: "",
     medicalCertificate: "",
@@ -240,6 +238,9 @@ export default function HRDashboard() {
   // UAN Number state
   const [uanSkipReason, setUanSkipReason] = useState<string>("");
   const [isUanSkipped, setIsUanSkipped] = useState<boolean>(false);
+
+  // HR ID entry state
+  const [isManualHRId, setIsManualHRId] = useState<boolean>(false);
 
   // Department form state
   const [newDepartment, setNewDepartment] = useState({
@@ -866,7 +867,6 @@ export default function HRDashboard() {
         salary: "",
         aadhaarCard: "",
         panCard: "",
-        passport: "",
         drivingLicense: "",
         resume: "",
         medicalCertificate: "",
@@ -878,6 +878,7 @@ export default function HRDashboard() {
       setDocumentPreviews({});
       setUanSkipReason("");
       setIsUanSkipped(false);
+      setIsManualHRId(false);
 
       // Show beautiful success modal
       setSuccessModal({
@@ -1383,7 +1384,6 @@ Generated on: ${new Date().toLocaleString()}
   const documentTypes = [
     { key: "aadhaarCard", label: "Aadhaar Card", icon: CreditCard },
     { key: "panCard", label: "PAN Card", icon: CreditCard },
-    { key: "passport", label: "Passport", icon: FileText },
     { key: "drivingLicense", label: "Driving License", icon: CreditCard },
     { key: "resume", label: "Resume/CV", icon: FileText },
     { key: "medicalCertificate", label: "Medical Certificate", icon: FileText },
@@ -1599,16 +1599,52 @@ Generated on: ${new Date().toLocaleString()}
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="hr-id" className="text-slate-300">
-                            HR ID (Auto-generated)
-                          </Label>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="hr-id" className="text-slate-300">
+                              HR ID{" "}
+                              {isManualHRId
+                                ? "(Manual Entry)"
+                                : "(Auto-generated)"}
+                            </Label>
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => {
+                                setIsManualHRId(!isManualHRId);
+                                if (!isManualHRId) {
+                                  // When switching to auto mode, reset to auto-generated
+                                  setNewEmployee({
+                                    ...newEmployee,
+                                    employeeId: "",
+                                  });
+                                }
+                              }}
+                              className="text-xs text-blue-400 hover:text-blue-300 h-auto p-1"
+                            >
+                              {isManualHRId ? "Auto" : "Manual"}
+                            </Button>
+                          </div>
                           <Input
                             id="hr-id"
                             value={
                               newEmployee.employeeId || getNextEmployeeId()
                             }
-                            readOnly
-                            className="bg-slate-800/50 border-slate-700 text-slate-400"
+                            onChange={(e) => {
+                              if (isManualHRId) {
+                                setNewEmployee({
+                                  ...newEmployee,
+                                  employeeId: e.target.value,
+                                });
+                              }
+                            }}
+                            readOnly={!isManualHRId}
+                            className={`${
+                              isManualHRId
+                                ? "bg-slate-800/50 border-slate-700 text-white cursor-text"
+                                : "bg-slate-800/50 border-slate-700 text-slate-400 cursor-not-allowed"
+                            }`}
+                            placeholder={isManualHRId ? "Enter HR ID" : ""}
                           />
                         </div>
 

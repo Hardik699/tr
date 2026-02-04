@@ -4,7 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  CheckCircle2,
+} from "lucide-react";
 import AppNav from "@/components/Navigation";
 
 export default function Login() {
@@ -14,26 +28,69 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorDialog, setErrorDialog] = useState<{
+    isOpen: boolean;
+    message: string;
+  }>({
+    isOpen: false,
+    message: "",
+  });
+  const [successDialog, setSuccessDialog] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Define users with their roles
-    const users: Record<string, { password: string; role: string }> = {
-      admin: { password: "admin", role: "admin" },
-      it: { password: "it@2121", role: "it" },
-      HR: { password: "Hr@2121", role: "hr" },
+    // Define default users with their roles
+    let users: Record<string, { password: string; role: string }> = {
+      admin: { password: "123", role: "admin" },
+      it: { password: "123", role: "it" },
+      hr: { password: "123", role: "hr" },
     };
+
+    // Check if users have been updated in localStorage
+    const storedUsersJson = localStorage.getItem("appUsers");
+    if (storedUsersJson) {
+      try {
+        users = JSON.parse(storedUsersJson);
+      } catch (error) {
+        console.error("Error parsing stored users:", error);
+      }
+    } else {
+      // Initialize appUsers on first login
+      localStorage.setItem("appUsers", JSON.stringify(users));
+    }
 
     // Check credentials
     if (users[username] && users[username].password === password) {
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("userRole", users[username].role);
       localStorage.setItem("currentUser", username);
-      navigate("/");
+
+      // Show success dialog
+      setSuccessDialog(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } else {
-      alert("Invalid credentials. Please check your username and password.");
+      // Determine specific error message
+      if (!username || !password) {
+        setErrorDialog({
+          isOpen: true,
+          message: "Please enter both username and password to continue.",
+        });
+      } else if (!users[username]) {
+        setErrorDialog({
+          isOpen: true,
+          message: `Username "${username}" not found. Please check and try again.`,
+        });
+      } else {
+        setErrorDialog({
+          isOpen: true,
+          message:
+            "Invalid password. Please check your credentials and try again.",
+        });
+      }
     }
 
     setIsLoading(false);
@@ -163,6 +220,76 @@ export default function Login() {
             </div>
           </div>
         </div>
+
+        {/* Error Dialog */}
+        <Dialog
+          open={errorDialog.isOpen}
+          onOpenChange={(open) => {
+            if (!open) {
+              setErrorDialog({ isOpen: false, message: "" });
+            }
+          }}
+        >
+          <DialogContent className="bg-gradient-to-br from-slate-900 to-slate-800 border-red-500/30 text-white">
+            <DialogHeader>
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30">
+                  <AlertCircle className="h-6 w-6 text-red-400" />
+                </div>
+                <DialogTitle className="text-xl">Login Failed</DialogTitle>
+              </div>
+              <DialogDescription className="text-slate-400 mt-4">
+                {errorDialog.message}
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-3 my-4">
+              <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                <p className="text-sm text-red-200 flex items-start space-x-2">
+                  <span className="mt-0.5">•</span>
+                  <span>
+                    Default credentials are available if you need to test
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <DialogFooter>
+              <Button
+                onClick={() => setErrorDialog({ isOpen: false, message: "" })}
+                className="bg-red-500 hover:bg-red-600 text-white transition-all"
+              >
+                Try Again
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Success Dialog */}
+        <Dialog open={successDialog} onOpenChange={setSuccessDialog}>
+          <DialogContent className="bg-gradient-to-br from-slate-900 to-slate-800 border-green-500/30 text-white">
+            <DialogHeader>
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center border border-green-500/30 animate-pulse">
+                  <CheckCircle2 className="h-6 w-6 text-green-400" />
+                </div>
+                <DialogTitle className="text-xl">Welcome back!</DialogTitle>
+              </div>
+              <DialogDescription className="text-slate-400 mt-4">
+                You're being redirected to your dashboard...
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-3 my-4">
+              <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+                <p className="text-sm text-green-200 flex items-center space-x-2">
+                  <span>✓</span>
+                  <span>Login successful</span>
+                </p>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
