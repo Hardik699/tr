@@ -124,17 +124,17 @@ export default function Index() {
             User Management
             <span className="block text-blue-400">System</span>
           </h1>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            {isAuthenticated
-              ? `Welcome back, ${currentUser}! ${userRole === "admin" ? "Manage users and system settings." : "Your account is active and ready to use."}`
-              : "A modern solution for user authentication and management. Secure, simple, and efficient."}
-          </p>
-
           {!isAuthenticated && (
-            <p className="text-slate-400 text-lg">
-              Use the navigation above to login or contact an administrator for
-              access.
-            </p>
+            <>
+              <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                A modern solution for user authentication and management. Secure,
+                simple, and efficient.
+              </p>
+              <p className="text-slate-400 text-lg">
+                Use the navigation above to login or contact an administrator for
+                access.
+              </p>
+            </>
           )}
         </div>
 
