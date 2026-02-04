@@ -2,8 +2,6 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import path from "path";
-import { attachIdentity } from "./middleware/auth";
-import { connectDB } from "./db";
 
 export function createServer() {
   const app = express();
