@@ -182,7 +182,7 @@ export default function Index() {
           <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 group animation-delay-100">
             <CardHeader>
               <CardTitle className="text-white flex items-center space-x-2">
-                <Shield className="h-5 w-5 text-purple-400" />
+                <Shield className={`h-5 w-5 text-purple-400 ${userRole === "admin" ? "animate-pulse" : ""}`} />
                 <span>Admin Access</span>
               </CardTitle>
               <CardDescription className="text-slate-400">
@@ -194,26 +194,26 @@ export default function Index() {
             <CardContent>
               <div className="text-center py-4">
                 <div
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-500 ${
                     userRole === "admin"
-                      ? "bg-purple-500/20 border border-purple-500/30"
+                      ? "bg-purple-500/20 border border-purple-500/30 animate-pulse shadow-lg shadow-purple-500/20"
                       : "bg-slate-700/50 border border-slate-600"
                   }`}
                 >
                   <Shield
-                    className={`h-8 w-8 ${userRole === "admin" ? "text-purple-400" : "text-slate-400"}`}
+                    className={`h-8 w-8 transition-all ${userRole === "admin" ? "text-purple-400 animate-bounce" : "text-slate-400"}`}
                   />
                 </div>
                 <p
-                  className={`font-medium ${userRole === "admin" ? "text-purple-400" : "text-slate-300"}`}
+                  className={`font-medium transition-colors ${userRole === "admin" ? "text-purple-400" : "text-slate-300"}`}
                 >
                   {userRole === "admin"
                     ? "Admin Privileges"
                     : "Standard Access"}
                 </p>
                 {userRole === "admin" && (
-                  <p className="text-slate-400 text-sm mt-2">
-                    Create and manage users
+                  <p className="text-slate-400 text-sm mt-2 animate-fade-in">
+                    <span className="text-purple-400 font-semibold">✓</span> Create and manage users
                   </p>
                 )}
               </div>
