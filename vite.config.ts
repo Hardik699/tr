@@ -25,21 +25,30 @@ export default defineConfig(({ mode }) => ({
 }));
 
 function expressPlugin(): Plugin {
+  let app: any;
+
   return {
     name: "express-plugin",
     apply: "serve",
     async configureServer(server) {
-      return () => {
-        server.middlewares.use(async (req, res, next) => {
-          try {
-            const { createServer } = await import("./server/index.js");
-            const app = createServer();
-            app(req, res, next);
-          } catch (e) {
-            next(e);
-          }
-        });
+      // Lazy load the express app
+      const loadApp = async () => {
+        if (!app) {
+          const { createServer } = await import("./server/index.js");
+          app = createServer();
+        }
+        return app;
       };
+
+      server.middlewares.use(async (req, res, next) => {
+        try {
+          const expressApp = await loadApp();
+          expressApp(req, res, next);
+        } catch (e) {
+          console.error("Express middleware error:", e);
+          next(e);
+        }
+      });
     },
   };
 }
