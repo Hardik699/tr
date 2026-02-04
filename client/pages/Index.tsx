@@ -169,11 +169,6 @@ export default function Index() {
                 >
                   {isAuthenticated ? "Active Session" : "Not Authenticated"}
                 </p>
-                {isAuthenticated && (
-                  <p className="text-slate-400 text-sm mt-2 animate-fade-in">
-                    Logged in as: <span className="text-blue-400 font-semibold">{currentUser}</span>
-                  </p>
-                )}
               </div>
             </CardContent>
           </Card>
