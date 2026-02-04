@@ -221,10 +221,10 @@ export default function Index() {
           </Card>
 
           {/* User Management */}
-          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105">
+          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20 group animation-delay-200">
             <CardHeader>
               <CardTitle className="text-white flex items-center space-x-2">
-                <Users className="h-5 w-5 text-orange-400" />
+                <Users className="h-5 w-5 text-orange-400 group-hover:animate-bounce" />
                 <span>User Management</span>
               </CardTitle>
               <CardDescription className="text-slate-400">
@@ -235,16 +235,16 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <div className="text-center py-4">
-                <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
-                  <Users className="h-8 w-8 text-orange-400" />
+                <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-500/30 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                  <Users className="h-8 w-8 text-orange-400 group-hover:animate-pulse" />
                 </div>
-                <p className="text-orange-400 font-medium">
+                <p className="text-orange-400 font-medium transition-colors">
                   {userRole === "admin" ? "Full Control" : "Account Access"}
                 </p>
-                <p className="text-slate-400 text-sm mt-2">
+                <p className="text-slate-400 text-sm mt-2 group-hover:text-slate-300 transition-colors">
                   {userRole === "admin"
-                    ? "Add, edit, delete users"
-                    : "View your account info"}
+                    ? "✓ Add, edit, delete users"
+                    : "✓ View your account info"}
                 </p>
               </div>
             </CardContent>
