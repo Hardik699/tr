@@ -138,82 +138,36 @@ export default function Index() {
           )}
         </div>
 
-        {/* Instructions */}
-        <Card className="bg-slate-900/30 border-slate-700 backdrop-blur-sm">
-          <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-semibold text-white mb-4">
-              {isAuthenticated
-                ? "Welcome to Your Dashboard"
-                : "Getting Started"}
-            </h3>
-            <div className="space-y-3 text-slate-400 max-w-3xl mx-auto">
-              {isAuthenticated ? (
-                userRole === "admin" ? (
-                  <>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-blue-400" />
-                      <span>
-                        Use the navigation above to create new users or manage
-                        existing ones
-                      </span>
-                    </p>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-blue-400" />
-                      <span>Click "New User" to add users to the system</span>
-                    </p>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-blue-400" />
-                      <span>
-                        Click "View Users" to see and manage existing users
-                      </span>
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-green-400" />
-                      <span>You're successfully logged into the system</span>
-                    </p>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-green-400" />
-                      <span>
-                        Contact an administrator for additional permissions
-                      </span>
-                    </p>
-                    <p className="flex items-center justify-center space-x-2">
-                      <ArrowRight className="h-4 w-4 text-green-400" />
-                      <span>
-                        Use the profile menu in the navigation to manage your
-                        account
-                      </span>
-                    </p>
-                  </>
-                )
-              ) : (
-                <>
-                  <p className="flex items-center justify-center space-x-2">
-                    <ArrowRight className="h-4 w-4 text-blue-400" />
-                    <span>
-                      Click "Login" in the navigation above to sign in
-                    </span>
-                  </p>
-                  <p className="flex items-center justify-center space-x-2">
-                    <ArrowRight className="h-4 w-4 text-blue-400" />
-                    <span>
-                      Admin credentials: username "admin", password "admin"
-                    </span>
-                  </p>
-                  <p className="flex items-center justify-center space-x-2">
-                    <ArrowRight className="h-4 w-4 text-blue-400" />
-                    <span>
-                      Contact an administrator to create your user account
-                    </span>
-                  </p>
-                </>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+        {/* Instructions - Only show for non-authenticated users */}
+        {!isAuthenticated && (
+          <Card className="bg-slate-900/30 border-slate-700 backdrop-blur-sm">
+            <CardContent className="p-8 text-center">
+              <h3 className="text-2xl font-semibold text-white mb-4">
+                Getting Started
+              </h3>
+              <div className="space-y-3 text-slate-400 max-w-3xl mx-auto">
+                <p className="flex items-center justify-center space-x-2">
+                  <ArrowRight className="h-4 w-4 text-blue-400" />
+                  <span>
+                    Click "Login" in the navigation above to sign in
+                  </span>
+                </p>
+                <p className="flex items-center justify-center space-x-2">
+                  <ArrowRight className="h-4 w-4 text-blue-400" />
+                  <span>
+                    Default credentials: admin / 123, hr / 123, it / 123
+                  </span>
+                </p>
+                <p className="flex items-center justify-center space-x-2">
+                  <ArrowRight className="h-4 w-4 text-blue-400" />
+                  <span>
+                    Contact an administrator to create your user account
+                  </span>
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </main>
 
       {/* Beautiful Welcome Modal */}
