@@ -177,6 +177,14 @@ export default function AppNav() {
                       <Settings className="h-4 w-4 mr-2" />
                       Settings
                     </DropdownMenuItem>
+                    <DropdownMenuItem
+                      key="change-password"
+                      onClick={() => setIsChangePasswordOpen(true)}
+                      className="focus:bg-blue-700 cursor-pointer text-blue-400 focus:text-white"
+                    >
+                      <Lock className="h-4 w-4 mr-2" />
+                      Change Password
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator
                       key="separator"
                       className="bg-slate-700"
