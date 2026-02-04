@@ -221,7 +221,6 @@ export default function HRDashboard() {
     // Document Uploads
     aadhaarCard: "",
     panCard: "",
-    passport: "",
     drivingLicense: "",
     resume: "",
     medicalCertificate: "",
