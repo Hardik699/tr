@@ -23,7 +23,9 @@ import {
   LogIn,
   Building2,
   LayoutDashboard,
+  Lock,
 } from "lucide-react";
+import ChangePasswordModal from "@/components/ChangePasswordModal";
 
 export default function AppNav() {
   const navigate = useNavigate();
