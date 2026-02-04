@@ -6,17 +6,10 @@ import path from "path";
 export function createServer() {
   const app = express();
 
-  // Initialize MongoDB connection
-  connectDB().catch((error) => {
-    console.error("Failed to initialize MongoDB:", error);
-    // Continue running even if MongoDB fails to connect
-  });
-
   // Middleware
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(attachIdentity);
 
   // Static for uploaded files
   app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
