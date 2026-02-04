@@ -4,18 +4,16 @@
   "type": "module",
   "pkg": {
     "assets": [
-      "dist/spa/*"
+      "dist/*"
     ],
     "scripts": [
-      "dist/server/**/*.js"
+      "server/simple-server.ts"
     ]
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build",
-    "build:server": "vite build --config vite.config.server.ts",
-    "start": "node dist/server/node-build.mjs",
+    "build": "vite build",
+    "start": "NODE_ENV=production node --loader tsx --no-warnings=ExperimentalWarning server/simple-server.ts",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc"
