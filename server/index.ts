@@ -29,26 +29,6 @@ export function createServer() {
     res.json({ message: ping });
   });
 
-  app.get("/api/demo", handleDemo);
-
-  // Salaries API
-  app.use("/api/salaries", salariesRouter());
-
-  // Google Sheets API
-  app.post("/api/google-sheets/sync", syncToGoogleSheets);
-  app.get("/api/google-sheets/info", getSpreadsheetInfo);
-
-  // Data APIs
-  app.use("/api/employees", employeesRouter);
-  app.use("/api/departments", departmentsRouter);
-  app.use("/api/it-accounts", itAccountsRouter);
-  app.use("/api/attendance", attendanceRouter);
-  app.use("/api/leave-requests", leaveRequestsRouter);
-  app.use("/api/salary-records", salaryRecordsRouter);
-  app.use("/api/system-assets", systemAssetsRouter);
-
-  // Clear data API (for development/testing)
-  app.use("/api/clear-data", clearDataRouter);
 
   // Serve static files from the dist/spa directory
   app.use(express.static(path.join(process.cwd(), "dist/spa")));
