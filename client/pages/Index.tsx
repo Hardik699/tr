@@ -328,6 +328,120 @@ export default function Index() {
           </CardContent>
         </Card>
       </main>
+
+      {/* Beautiful Welcome Modal */}
+      <Dialog open={showWelcomeModal} onOpenChange={setShowWelcomeModal}>
+        <DialogContent className={`bg-gradient-to-br ${welcomeData.gradient} border-0 text-white shadow-2xl`}>
+          <div className="absolute inset-0 overflow-hidden rounded-lg">
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+          </div>
+
+          <DialogHeader className="relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className={`w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md animate-bounce`}>
+                <WelcomeIcon className="w-10 h-10 text-white" />
+              </div>
+              <button
+                onClick={() => setShowWelcomeModal(false)}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <DialogTitle className="text-3xl font-bold text-white text-left">
+              {welcomeData.title}
+            </DialogTitle>
+            <DialogDescription className="text-white/90 text-lg text-left mt-2">
+              {welcomeData.subtitle}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="relative z-10 space-y-6 my-6">
+            <p className="text-white/80 text-base leading-relaxed">
+              {welcomeData.message}
+            </p>
+
+            <div className="space-y-3">
+              {userRole === "admin" && (
+                <>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Sparkles className="h-5 w-5 text-yellow-300" />
+                    <span className="text-sm">Full access to all dashboards</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Users className="h-5 w-5 text-blue-300" />
+                    <span className="text-sm">Manage users and permissions</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <BarChart3 className="h-5 w-5 text-green-300" />
+                    <span className="text-sm">View system analytics</span>
+                  </div>
+                </>
+              )}
+
+              {userRole === "hr" && (
+                <>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Users className="h-5 w-5 text-blue-300" />
+                    <span className="text-sm">Manage HR dashboard</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <BarChart3 className="h-5 w-5 text-green-300" />
+                    <span className="text-sm">View employee analytics</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Sparkles className="h-5 w-5 text-yellow-300" />
+                    <span className="text-sm">Track attendance and leave</span>
+                  </div>
+                </>
+              )}
+
+              {userRole === "it" && (
+                <>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Zap className="h-5 w-5 text-orange-300" />
+                    <span className="text-sm">Manage IT systems</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <BarChart3 className="h-5 w-5 text-green-300" />
+                    <span className="text-sm">Monitor system health</span>
+                  </div>
+                  <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-md p-3 rounded-lg hover:bg-white/20 transition-all">
+                    <Sparkles className="h-5 w-5 text-yellow-300" />
+                    <span className="text-sm">Manage assets and inventory</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="relative z-10 flex gap-3 pt-4">
+            <Button
+              onClick={() => setShowWelcomeModal(false)}
+              className="flex-1 bg-white/20 hover:bg-white/30 text-white border border-white/40 rounded-lg transition-all"
+            >
+              Explore
+            </Button>
+            <Button
+              onClick={() => {
+                setShowWelcomeModal(false);
+                userRole === "admin"
+                  ? navigate("/admin")
+                  : userRole === "hr"
+                    ? navigate("/hr")
+                    : userRole === "it"
+                      ? navigate("/it-dashboard")
+                      : null;
+              }}
+              className={`flex-1 bg-white text-${welcomeData.color}-600 hover:bg-white/90 font-semibold rounded-lg transition-all`}
+            >
+              Go to Dashboard
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
