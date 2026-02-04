@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 export function attachIdentity(
   req: Request,
   _res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   // dummy user (safe default)
   (req as any).user = {
@@ -16,11 +16,7 @@ export function attachIdentity(
 }
 
 // requireAdmin middleware
-export function requireAdmin(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+export function requireAdmin(req: Request, res: Response, next: NextFunction) {
   const user = (req as any).user;
 
   if (!user || user.role !== "admin") {
