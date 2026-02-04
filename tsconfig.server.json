@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/server",
+    "module": "esnext",
+    "target": "esnext"
+  },
+  "include": ["server/**/*.ts", "shared/**/*.ts"],
+  "exclude": ["node_modules", "client", "dist"]
+}
