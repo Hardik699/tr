@@ -8,7 +8,7 @@ import { Request, Response, NextFunction } from "express";
 export function attachIdentity(
   req: Request,
   _res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   // example identity (safe default)
   req.user = {
