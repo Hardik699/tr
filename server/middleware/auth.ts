@@ -1,24 +1,20 @@
-import { RequestHandler } from "express";
-import type { UserRole } from "@shared/api";
+import { Request, Response, NextFunction } from "express";
 
-declare module "express-serve-static-core" {
-  interface Request {
-    userRole?: UserRole;
-    userId?: string;
-  }
+/**
+ * Simple identity attach middleware
+ * ❌ No routing
+ * ❌ No env URLs
+ */
+export function attachIdentity(
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) {
+  // example identity (safe default)
+  req.user = {
+    id: "system",
+    role: "admin",
+  };
+
+  next();
 }
-
-export const attachIdentity: RequestHandler = (req, _res, next) => {
-  const role = (req.header("x-role") || "user").toLowerCase();
-  const userId = req.header("x-user-id") || "anonymous";
-  req.userRole = role === "admin" ? "admin" : "user";
-  req.userId = userId;
-  next();
-};
-
-export const requireAdmin: RequestHandler = (req, res, next) => {
-  if (req.userRole !== "admin") {
-    return res.status(403).json({ error: "Admin privileges required" });
-  }
-  next();
-};
