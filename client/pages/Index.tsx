@@ -55,13 +55,69 @@ export default function Index() {
     setHasSeenWelcome(true);
   }, []);
 
+  // Get role-specific welcome data
+  const getRoleWelcomeData = () => {
+    switch (userRole) {
+      case "admin":
+        return {
+          title: "Welcome, Admin!",
+          subtitle: "You have full system access",
+          icon: Shield,
+          color: "purple",
+          gradient: "from-purple-600 to-blue-600",
+          message: `All systems operational. You have ${isAuthenticated ? "administrative privileges" : "standard access"}.`,
+        };
+      case "hr":
+        return {
+          title: "Welcome, HR Manager!",
+          subtitle: "Ready to manage your team",
+          icon: Users,
+          color: "green",
+          gradient: "from-green-600 to-blue-600",
+          message: "All employee data is synced and ready. Start managing your team today!",
+        };
+      case "it":
+        return {
+          title: "Welcome, IT Specialist!",
+          subtitle: "System management ready",
+          icon: Zap,
+          color: "orange",
+          gradient: "from-orange-600 to-red-600",
+          message: "All systems connected. You're ready to manage IT infrastructure.",
+        };
+      default:
+        return {
+          title: "Welcome Back!",
+          subtitle: "You're logged in",
+          icon: Sparkles,
+          color: "blue",
+          gradient: "from-blue-600 to-cyan-600",
+          message: "Your account is active and ready to use.",
+        };
+    }
+  };
+
+  const welcomeData = getRoleWelcomeData();
+  const WelcomeIcon = welcomeData.icon;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-deep-900 via-blue-deep-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-deep-900 via-blue-deep-800 to-slate-900 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* Floating Orbs */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-700"></div>
+
+        {/* Animated Grid Background */}
+        <div className={"absolute inset-0 bg-[url('data:image/svg+xml;utf8,<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0h60v60H0z\" fill=\"none\"/><path d=\"M0 0h60v1H0z\" stroke=\"rgba(100,116,139,0.1)\" stroke-width=\"1\"/><path d=\"M0 0v60h1V0z\" stroke=\"rgba(100,116,139,0.1)\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"30\" r=\"1\" fill=\"rgba(100,116,139,0.1)\"/></svg>')] opacity-30"}></div>
+      </div>
+
       {/* Navigation */}
       <AppNav />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
