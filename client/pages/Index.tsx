@@ -139,12 +139,12 @@ export default function Index() {
         </div>
 
         {/* Features/Status Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 animate-fade-in">
           {/* Authentication Status */}
-          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105">
+          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 group">
             <CardHeader>
               <CardTitle className="text-white flex items-center space-x-2">
-                <User className="h-5 w-5 text-blue-400" />
+                <User className="h-5 w-5 text-blue-400 group-hover:animate-spin" />
                 <span>Authentication</span>
               </CardTitle>
               <CardDescription className="text-slate-400">
@@ -154,24 +154,24 @@ export default function Index() {
             <CardContent>
               <div className="text-center py-4">
                 <div
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-500 ${
                     isAuthenticated
-                      ? "bg-green-500/20 border border-green-500/30"
+                      ? "bg-green-500/20 border border-green-500/30 animate-pulse"
                       : "bg-slate-700/50 border border-slate-600"
                   }`}
                 >
                   <User
-                    className={`h-8 w-8 ${isAuthenticated ? "text-green-400" : "text-slate-400"}`}
+                    className={`h-8 w-8 transition-all ${isAuthenticated ? "text-green-400 animate-bounce" : "text-slate-400"}`}
                   />
                 </div>
                 <p
-                  className={`font-medium ${isAuthenticated ? "text-green-400" : "text-slate-300"}`}
+                  className={`font-medium transition-colors ${isAuthenticated ? "text-green-400" : "text-slate-300"}`}
                 >
                   {isAuthenticated ? "Active Session" : "Not Authenticated"}
                 </p>
                 {isAuthenticated && (
-                  <p className="text-slate-400 text-sm mt-2">
-                    Logged in as: {currentUser}
+                  <p className="text-slate-400 text-sm mt-2 animate-fade-in">
+                    Logged in as: <span className="text-blue-400 font-semibold">{currentUser}</span>
                   </p>
                 )}
               </div>
@@ -179,7 +179,7 @@ export default function Index() {
           </Card>
 
           {/* Admin Access */}
-          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105">
+          <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 group animation-delay-100">
             <CardHeader>
               <CardTitle className="text-white flex items-center space-x-2">
                 <Shield className="h-5 w-5 text-purple-400" />
