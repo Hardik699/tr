@@ -19,12 +19,25 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Define users with their roles
-    const users: Record<string, { password: string; role: string }> = {
+    // Define default users with their roles
+    let users: Record<string, { password: string; role: string }> = {
       admin: { password: "123", role: "admin" },
       it: { password: "123", role: "it" },
       hr: { password: "123", role: "hr" },
     };
+
+    // Check if users have been updated in localStorage
+    const storedUsersJson = localStorage.getItem("appUsers");
+    if (storedUsersJson) {
+      try {
+        users = JSON.parse(storedUsersJson);
+      } catch (error) {
+        console.error("Error parsing stored users:", error);
+      }
+    } else {
+      // Initialize appUsers on first login
+      localStorage.setItem("appUsers", JSON.stringify(users));
+    }
 
     // Check credentials
     if (users[username] && users[username].password === password) {
