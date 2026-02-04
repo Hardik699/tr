@@ -241,6 +241,9 @@ export default function HRDashboard() {
   const [uanSkipReason, setUanSkipReason] = useState<string>("");
   const [isUanSkipped, setIsUanSkipped] = useState<boolean>(false);
 
+  // HR ID entry state
+  const [isManualHRId, setIsManualHRId] = useState<boolean>(false);
+
   // Department form state
   const [newDepartment, setNewDepartment] = useState({
     name: "",
