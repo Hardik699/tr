@@ -310,6 +310,18 @@ export default function AppNav() {
 
                       <Button
                         variant="outline"
+                        className="w-full justify-start border-blue-600 text-blue-400 hover:bg-blue-700 hover:text-white"
+                        onClick={() => {
+                          setIsChangePasswordOpen(true);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        <Lock className="h-4 w-4 mr-2" />
+                        Change Password
+                      </Button>
+
+                      <Button
+                        variant="outline"
                         className="w-full justify-start border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
                         onClick={() => {
                           handleLogout();
