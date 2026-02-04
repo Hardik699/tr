@@ -3,7 +3,10 @@
   "compilerOptions": {
     "outDir": "./dist/server",
     "module": "esnext",
-    "target": "esnext"
+    "target": "ES2020",
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false
   },
   "include": ["server/**/*.ts", "shared/**/*.ts"],
   "exclude": ["node_modules", "client", "dist"]
