@@ -881,6 +881,7 @@ export default function HRDashboard() {
       setDocumentPreviews({});
       setUanSkipReason("");
       setIsUanSkipped(false);
+      setIsManualHRId(false);
 
       // Show beautiful success modal
       setSuccessModal({
