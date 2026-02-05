@@ -35,24 +35,24 @@ export function createServer() {
     });
 
   // Middleware to check DB connection and return proper error
-  app.use((req, res, next) => {
-    if (!dbConnected && req.path.startsWith("/api/")) {
-      return res.status(503).json({
-        success: false,
-        error: "Database service is unavailable. Please configure MONGODB_URI environment variable.",
-      });
-    }
-    next();
-  });
+  // app.use((req, res, next) => {
+  //   if (!dbConnected && req.path.startsWith("/api/")) {
+  //     return res.status(503).json({
+  //       success: false,
+  //       error: "Database service is unavailable. Please configure MONGODB_URI environment variable.",
+  //     });
+  //   }
+  //   next();
+  // });
 
   // Middleware
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(attachIdentity);
+  // app.use(attachIdentity);
 
   // Static for uploaded files
-  app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
+  // app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {
