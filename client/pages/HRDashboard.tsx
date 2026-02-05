@@ -411,6 +411,13 @@ export default function HRDashboard() {
               fetch("/api/attendance"),
             ]);
 
+          // Handle database unavailable error
+          if (empRes.status === 503 || deptRes.status === 503 || leaveRes.status === 503 || salaryRes.status === 503 || attRes.status === 503) {
+            console.error("Database service unavailable. Please configure MongoDB connection.");
+            alert("Database service is unavailable. Please configure your MongoDB connection in the project settings.");
+            return;
+          }
+
           if (empRes.ok) {
             const empData = await empRes.json();
             if (empData.success) {
@@ -468,6 +475,7 @@ export default function HRDashboard() {
           }
         } catch (error) {
           console.error("Failed to load HR data from API:", error);
+          alert("Failed to load dashboard data. Please check the console for details.");
         }
       }
     };
