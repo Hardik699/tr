@@ -70,16 +70,32 @@ export function createServer() {
   app.get("/api/google-sheets/info", getSpreadsheetInfo);
 
   // Data APIs
-  app.use("/api/employees", employeesRouter);
-  app.use("/api/departments", departmentsRouter);
-  app.use("/api/it-accounts", itAccountsRouter);
-  app.use("/api/attendance", attendanceRouter);
-  app.use("/api/leave-requests", leaveRequestsRouter);
-  app.use("/api/salary-records", salaryRecordsRouter);
-  app.use("/api/system-assets", systemAssetsRouter);
+  try {
+    app.use("/api/employees", employeesRouter);
+  } catch (e) { console.error("Error loading employees router:", e); }
+  try {
+    app.use("/api/departments", departmentsRouter);
+  } catch (e) { console.error("Error loading departments router:", e); }
+  try {
+    app.use("/api/it-accounts", itAccountsRouter);
+  } catch (e) { console.error("Error loading it-accounts router:", e); }
+  try {
+    app.use("/api/attendance", attendanceRouter);
+  } catch (e) { console.error("Error loading attendance router:", e); }
+  try {
+    app.use("/api/leave-requests", leaveRequestsRouter);
+  } catch (e) { console.error("Error loading leave-requests router:", e); }
+  try {
+    app.use("/api/salary-records", salaryRecordsRouter);
+  } catch (e) { console.error("Error loading salary-records router:", e); }
+  try {
+    app.use("/api/system-assets", systemAssetsRouter);
+  } catch (e) { console.error("Error loading system-assets router:", e); }
 
   // Clear data API (for development/testing)
-  app.use("/api/clear-data", clearDataRouter);
+  try {
+    app.use("/api/clear-data", clearDataRouter);
+  } catch (e) { console.error("Error loading clear-data router:", e); }
 
   return app;
 }
