@@ -25,14 +25,14 @@ export function createServer() {
   let dbConnected = false;
 
   // Initialize MongoDB connection
-  connectDB()
-    .then(() => {
-      dbConnected = true;
-    })
-    .catch((error) => {
-      console.error("Failed to initialize MongoDB:", error);
-      // Continue running even if MongoDB fails to connect
-    });
+  // connectDB()
+  //   .then(() => {
+  //     dbConnected = true;
+  //   })
+  //   .catch((error) => {
+  //     console.error("Failed to initialize MongoDB:", error);
+  //     // Continue running even if MongoDB fails to connect
+  //   });
 
   // Middleware to check DB connection and return proper error
   // app.use((req, res, next) => {
