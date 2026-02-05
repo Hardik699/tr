@@ -133,6 +133,13 @@ export default function ITDashboard() {
           fetch("/api/departments"),
         ]);
 
+        // Handle database unavailable error
+        if (itsRes.status === 503 || empsRes.status === 503 || deptsRes.status === 503) {
+          console.error("Database service unavailable. Please configure MongoDB connection.");
+          alert("Database service is unavailable. Please configure your MongoDB connection in the project settings.");
+          return;
+        }
+
         if (itsRes.ok) {
           const itsData = await itsRes.json();
           if (itsData.success) setRecords(itsData.data);
@@ -147,6 +154,7 @@ export default function ITDashboard() {
         }
       } catch (error) {
         console.error("Failed to load IT dashboard data:", error);
+        alert("Failed to load dashboard data. Please check the console for details.");
       }
     };
 

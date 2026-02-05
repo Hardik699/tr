@@ -79,6 +79,13 @@ export default function ITPage() {
           fetch("/api/it-accounts"),
         ]);
 
+        // Handle database unavailable error
+        if (empRes.status === 503 || deptRes.status === 503 || itsRes.status === 503) {
+          console.error("Database service unavailable. Please configure MongoDB connection.");
+          alert("Database service is unavailable. Please configure your MongoDB connection in the project settings.");
+          return;
+        }
+
         if (empRes.ok) {
           const empData = await empRes.json();
           if (empData.success) setEmployees(empData.data);

@@ -108,6 +108,15 @@ export default function SystemInfo() {
     const fetchAssets = async () => {
       try {
         const response = await fetch("/api/system-assets");
+
+        // Handle database unavailable error
+        if (response.status === 503) {
+          console.error("Database service unavailable. Please configure MongoDB connection.");
+          alert("Database service is unavailable. Please configure your MongoDB connection in the project settings.");
+          setAssetCount(0);
+          return;
+        }
+
         const result = await response.json();
         if (result.success) {
           setAssetCount(result.data.length);
