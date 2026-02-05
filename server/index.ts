@@ -60,7 +60,7 @@ export function createServer() {
     res.json({ message: ping });
   });
 
-  app.get("/api/demo", handleDemo);
+  // app.get("/api/demo", handleDemo);
 
   // Salaries API
   // app.use("/api/salaries", salariesRouter());
