@@ -22,10 +22,27 @@ import { clearDataRouter } from "./routes/clear-data";
 export function createServer() {
   const app = express();
 
+  let dbConnected = false;
+
   // Initialize MongoDB connection
-  connectDB().catch((error) => {
-    console.error("Failed to initialize MongoDB:", error);
-    // Continue running even if MongoDB fails to connect
+  connectDB()
+    .then(() => {
+      dbConnected = true;
+    })
+    .catch((error) => {
+      console.error("Failed to initialize MongoDB:", error);
+      // Continue running even if MongoDB fails to connect
+    });
+
+  // Middleware to check DB connection and return proper error
+  app.use((req, res, next) => {
+    if (!dbConnected && req.path.startsWith("/api/")) {
+      return res.status(503).json({
+        success: false,
+        error: "Database service is unavailable. Please configure MONGODB_URI environment variable.",
+      });
+    }
+    next();
   });
 
   // Middleware
