@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import path from "path";
-import { handleDemo } from "./routes/demo";
-import { attachIdentity } from "./middleware/auth";
+// import { handleDemo } from "./routes/demo";
+// import { attachIdentity } from "./middleware/auth";
 // import { salariesRouter } from "./routes/salaries";
 // import {
 //   syncToGoogleSheets,
