@@ -41,7 +41,7 @@ async function startDevServer() {
     <script type="module" src="/client/App.tsx"></script>
   </body>
 </html>
-        `
+        `,
       );
       res.type("html").end(html);
     } catch (e) {

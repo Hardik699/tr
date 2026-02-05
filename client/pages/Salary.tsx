@@ -44,7 +44,9 @@ export default function Salary() {
     queryFn: async (): Promise<ListSalariesResponse> => {
       const res = await fetch("/api/salaries", { headers });
       if (res.status === 503) {
-        throw new Error("Database service is unavailable. Please configure your MongoDB connection.");
+        throw new Error(
+          "Database service is unavailable. Please configure your MongoDB connection.",
+        );
       }
       if (!res.ok) throw new Error("Failed to load salaries");
       return res.json();
