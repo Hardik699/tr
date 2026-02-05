@@ -187,6 +187,13 @@ export default function EmployeeDetailsPage() {
           fetch("/api/salary-records"),
         ]);
 
+        // Handle database unavailable error
+        if (empRes.status === 503 || deptRes.status === 503 || salaryRes.status === 503) {
+          console.error("Database service unavailable. Please configure MongoDB connection.");
+          alert("Database service is unavailable. Please configure your MongoDB connection in the project settings.");
+          return;
+        }
+
         let employees: Employee[] = [];
         let dept: Department[] = [];
         let salary: SalaryRecord[] = [];
@@ -243,6 +250,7 @@ export default function EmployeeDetailsPage() {
         }
       } catch (error) {
         console.error("Failed to load employee details:", error);
+        alert("Failed to load employee details. Please check the console for details.");
       }
     };
 
