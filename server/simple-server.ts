@@ -7,7 +7,7 @@ import { createServer } from "./index.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.NODE_ENV === "production" ? process.env.PORT || 10000 : 3001;
 
 // Create the Express app with all API routes
 const app = createServer();
