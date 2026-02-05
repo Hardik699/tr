@@ -11,7 +11,7 @@
     ]
   },
   "scripts": {
-    "dev": "node --import tsx --no-warnings=ExperimentalWarning server/dev-server.ts",
+    "dev": "concurrently \"node --import tsx --no-warnings=ExperimentalWarning server/simple-server.ts\" \"vite\"",
     "build": "vite build",
     "start": "NODE_ENV=production node --import tsx --no-warnings=ExperimentalWarning server/simple-server.ts",
     "test": "vitest --run",
