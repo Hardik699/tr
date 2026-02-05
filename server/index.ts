@@ -63,7 +63,7 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   // Salaries API
-  app.use("/api/salaries", salariesRouter());
+  // app.use("/api/salaries", salariesRouter());
 
   // Google Sheets API
   app.post("/api/google-sheets/sync", syncToGoogleSheets);
