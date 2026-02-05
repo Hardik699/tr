@@ -11,9 +11,9 @@
     ]
   },
   "scripts": {
-    "dev": "node --loader tsx --no-warnings=ExperimentalWarning server/dev-server.ts",
+    "dev": "node --import tsx --no-warnings=ExperimentalWarning server/dev-server.ts",
     "build": "vite build",
-    "start": "NODE_ENV=production node --loader tsx --no-warnings=ExperimentalWarning server/simple-server.ts",
+    "start": "NODE_ENV=production node --import tsx --no-warnings=ExperimentalWarning server/simple-server.ts",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc"
