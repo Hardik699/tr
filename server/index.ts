@@ -4,20 +4,20 @@ import cors from "cors";
 import path from "path";
 import { handleDemo } from "./routes/demo";
 import { attachIdentity } from "./middleware/auth";
-import { salariesRouter } from "./routes/salaries";
-import {
-  syncToGoogleSheets,
-  getSpreadsheetInfo,
-} from "./services/googleSheets";
+// import { salariesRouter } from "./routes/salaries";
+// import {
+//   syncToGoogleSheets,
+//   getSpreadsheetInfo,
+// } from "./services/googleSheets";
 import { connectDB } from "./db";
-import { employeesRouter } from "./routes/employees";
-import { departmentsRouter } from "./routes/departments";
-import { itAccountsRouter } from "./routes/it-accounts";
-import { attendanceRouter } from "./routes/attendance";
-import { leaveRequestsRouter } from "./routes/leave-requests";
-import { salaryRecordsRouter } from "./routes/salary-records";
-import { systemAssetsRouter } from "./routes/system-assets";
-import { clearDataRouter } from "./routes/clear-data";
+// import { employeesRouter } from "./routes/employees";
+// import { departmentsRouter } from "./routes/departments";
+// import { itAccountsRouter } from "./routes/it-accounts";
+// import { attendanceRouter } from "./routes/attendance";
+// import { leaveRequestsRouter } from "./routes/leave-requests";
+// import { salaryRecordsRouter } from "./routes/salary-records";
+// import { systemAssetsRouter } from "./routes/system-assets";
+// import { clearDataRouter } from "./routes/clear-data";
 
 export function createServer() {
   const app = express();
